@@ -17,17 +17,44 @@ The following outlines the representation of JSON file used for dialog.
   "submit":{
     "to":"string - <URL for dialog submission>", 
     "method":"string - <POST|GET>",
-    "waitcue":"string - <true|false|url to sound file>"
+    "waitcue":"string - <file or url to sound file>"
   },
   
   "parts":[
-    {"speak":{
-      "utter":"string - <text to speak>", 
-      "title":"string - <displayable title of utterance>"
-      "text":"string - <displayable text for utterance>"
-      "sensitive":boole //<true|false> #whether to display part in dialog,
+    {
+      "part":"string - <{SPEAK|PLAYBACK|LISTEN|DISPLAY|PAUSE} valid dialog parts>",
+      "title":"string - <displayable title of utterance>",
+      "text":"string - <displayable text for utterance>",
+      "sensitivity":"string - <{low|med|hi} the security sensitivity of dialog part>",
+      
+      "speak":{
+        "text": "string - <text to speak>"
+      },
+      
+      "play":{
+        "src":"string - <filename or url of resource to playback>"
+      },
+      
+      "listen":{
+        "prompt":"string - <displayable text prompt>",
+        "name":"string - <identifier for input value>",
+        "mode":"string - <{ASR|ALPHANUM|NUM|REC> mode used for input>"
+      },
+      
+      "display":{
+        "src":"string - <file or url resource to display>",
+        "href":"string - <url linked to displayed resource>"
+      },
+      
+      "pause":{"delay":"integer - dialog pause in millisecs"}
     },
-  ]
+  ],
   
+  "params":[
+    {
+      "name":"string - name of parameter",
+      "value":"string - value of parameter"
+    }
+  ]
 }
 ```
