@@ -28,27 +28,35 @@ The following outlines the representation of JSON file used for dialog.  A voxme
   },
   
   "parts":[
-    {
-      "part":"string - <{SPEAK|PLAYBACK|LISTEN|DISPLAY|PAUSE} valid dialog parts>",
-      "title":"string - <displayable title of utterance>",
-      "text":"string - <displayable text for utterance>",
-      "sensitivity":"string - <{LOW|MED|HI} the security sensitivity of dialog part>",
-      
+    { 
+      "type":"string - <required {SPEAK|PLAYBACK|LISTEN|DISPLAY|PAUSE} valid dialog parts>",
+      "id":"string - <optional identifier for part>",
+
       "speak":{
-        "text": "string - <text to speak>"
+        "title":"string - <optional title for part>",
+        "alt":"string - <optional text for speech>",
+        "text":"string - <text to speek>",
+        "pitch":"",
+        "rate":"",
+        "voice":""
       },
-      
-      "play":{
-        "src":"string - <filename or url of resource to playback>"
+
+      "playback":{
+        "title":"string - <optional title for part>",
+        "alt":"string - <optional text for speech>",
+        "src":"string - <url of resource to playback"
       },
-      
+
       "listen":{
-        "prompt":"string - <displayable text prompt>",
-        "name":"string - <identifier for input value>",
+        "title":"string - <optional title for part>",
+        "alt":"string - <optional text for speech>",
         "mode":"string - <{ASR|ALPHANUM|NUM|REC} mode used for input>"
       },
       
       "display":{
+        "title":"string - <optional title for part>",
+        "alt":"string - <optional text for speech>",
+        "text":"string <optional text to display>",
         "src":"string - <file or url resource to display>",
         "href":"string - <url linked to displayed resource>"
       },
@@ -59,7 +67,7 @@ The following outlines the representation of JSON file used for dialog.  A voxme
   
   "params":[
     {
-      "name":"string - name of parameter",
+      "id":"string - identifier of parameter",
       "value":"string - value of parameter"
     }
   ]
