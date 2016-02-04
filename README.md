@@ -14,55 +14,30 @@ Devices that implements VoxMecanica's object notation are expected to have the f
 The following outlines the representation of JSON file used for dialog.  A voxmec runtime executes the file as an interactive dialog on supported devices such as Android or Chrome browser.
 ```JSON
 {
-  "config":{
-      "rate":"", 
-      "pitch":"", 
-      "lang":"",
-      "voice":""
-  },
-  
-  "submit":{
-    "to":"string - <URL for dialog submission>", 
+  "remote":{
+    "origin":"string <origin URL for dialog>",
+    "sbumit-to":"string - <URL for dialog submission>", 
     "method":"string - <POST|GET>",
-    "waitcue":"string - <file or url to sound file>"
+    "format":"string - <submission format {PLAIN|JSON}>"
   },
   
   "parts":[
     { 
-      "type":"string - <required {SPEAK|PLAYBACK|LISTEN|DISPLAY|PAUSE} valid dialog parts>",
+      "type":"string - <required {INPUT|SPEAK|PLAYBACK|DISPLAY|DIRECTIVE} valid dialog parts>",
       "id":"string - <optional identifier for part>",
-
-      "speak":{
-        "title":"string - <optional title for part>",
-        "alt":"string - <optional text for speech>",
-        "text":"string - <text to speek>",
-        "pitch":"",
-        "rate":"",
-        "voice":""
-      },
-
-      "playback":{
-        "title":"string - <optional title for part>",
-        "alt":"string - <optional text for speech>",
-        "src":"string - <url of resource to playback"
-      },
-
-      "listen":{
-        "title":"string - <optional title for part>",
-        "alt":"string - <optional text for speech>",
-        "mode":"string - <{ASR|ALPHANUM|NUM|REC} mode used for input>"
-      },
+      "title":"string - <optional title for part>",
+      "alt":"string - <optional text for speech>",
+      "src":"string - <url for a resource>",
+      "text":"string - <text used for output by device>",
+      "href":"string - <link associated with dialog part>",
       
-      "display":{
-        "title":"string - <optional title for part>",
-        "alt":"string - <optional text for speech>",
-        "text":"string <optional text to display>",
-        "src":"string - <file or url resource to display>",
-        "href":"string - <url linked to displayed resource>"
-      },
-      
-      "pause":{"delay":"integer - dialog pause in millisecs"}
-    },
+      "pitch":"numeric - <a directive to alter the pitch value used for TTS>",
+      "rate":"numeric - <a directive to alter speech rate used for TTS",
+      "voice":"string - <a directive to alter set the voice to used for TTS>",
+      "pause":"numeric  - <a directive to pause the dialog in millisecs>",
+
+      "input-mode":"string - <mode for input: {ASR|ALPHANUM|NUM|REC}>",
+    }
   ],
   
   "params":[
@@ -81,21 +56,22 @@ A dialog result represents the data collected from a dialog.  The result of a di
 {
   "params":[
     {
-      "name":"string - name of parameter",
-      "type":"string - <{ASR|ALPHANUM|NUM|REC|PARAM} how the param was collected",
+      "id":"string - <id of parameter>",
+      "mode":"string - <{ASR|ALPHANUM|NUM|REC|PARAM} how the param was collected",
       
       "asr":{
         "matches":"array - [strings of matches from ASR]",
         "confidence":"array [confidence scores for each match]"
       },
       
-      "value":"string - the value for param (when ASR, val with highest confidence)"
+      "value":"string - val for param when non-ASR"
     }
   ],
   
-  "submit":{
-    "to":"string - <URL for dialog submission>", 
-    "method":"string - <POST|GET>",
+  "remote":{
+    "origin":"string - <origin url for dialog>",
+    "submit-to":"string - <URL for dialog submission>", 
+    "method":"string - <POST|GET>"
   },
 }
 ```
