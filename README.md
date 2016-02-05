@@ -14,11 +14,11 @@ Devices that implements VoxMecanica's object notation are expected to have the f
 The following outlines the representation of JSON file used for dialog.  A voxmec runtime executes the file as an interactive dialog on supported devices such as Android or Chrome browser.
 ```JSON
 {
-  "remote":{
-    "origin":"string <origin URL for dialog>",
-    "sbumit-to":"string - <URL for dialog submission>", 
-    "method":"string - <POST|GET>",
-    "format":"string - <submission format {PLAIN|JSON}>"
+  "properties":{
+    "originUri":"string <origin URL for dialog>",
+    "submitUri":"string - <URL for dialog submission>", 
+    "submitMethod":"string - <POST|GET>",
+    "submitFormat":"string - <submission format {PLAIN|JSON}>"
   },
   
   "parts":[
@@ -36,7 +36,7 @@ The following outlines the representation of JSON file used for dialog.  A voxme
       "voice":"string - <a directive to alter set the voice to used for TTS>",
       "pause":"numeric  - <a directive to pause the dialog in millisecs>",
 
-      "input-mode":"string - <mode for input: {ASR|ALPHANUM|NUM|REC}>",
+      "inputMode":"string - <mode for input: {ASR|ALPHANUM|NUM|REC}>",
     }
   ],
   
